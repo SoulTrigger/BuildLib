@@ -11,6 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * end level
  * 
@@ -22,8 +25,10 @@ import javax.persistence.Table;
 public class Collection extends BaseGenerator {
 	@Column(name = "collection_name")
 	private String name;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Community community;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany(mappedBy = "collections", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Role> roles = new HashSet<>();
 

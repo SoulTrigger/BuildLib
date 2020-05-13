@@ -4,7 +4,6 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,14 +20,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.wl.config.aware.PropertiesAwareService;
-import com.wl.config.interceptor.RequestTimeIntercepter;
+import com.wl.interceptor.RequestTimeIntercepter;
 import com.wl.model.dto.ProgramException;
+import com.wl.service.PropertiesAwareService;
 
 /**
  * WebMvcConfigurerAdapter需要定制配置
@@ -42,23 +40,27 @@ import com.wl.model.dto.ProgramException;
 @Import(SecurityConfigure.class)
 public class MvcConfigure extends WebMvcConfigurerAdapter implements TransactionManagementConfigurer{
 	
+	private static final String PACKAGES_TO_SCAN = "com.wl.model.po";
 	//注入文件资源
 	@Autowired
 	private PropertiesAwareService propService;
 	
 	
+//	@Bean
+//	public InternalResourceViewResolver viewResolever() {
+//		InternalResourceViewResolver view = new InternalResourceViewResolver();
+//		view.setPrefix("/WEB-INF/classes/views/");
+//		view.setSuffix(".jsp");
+//		view.setViewClass(JstlView.class);
+//		return view;
+//	}
+	
 	/**
-	 * @return
-	 * @Author:wuli
-	 * @Description:视图解析
+	 * 视图解析
 	 */
-	@Bean
-	public InternalResourceViewResolver viewResolever() {
-		InternalResourceViewResolver view = new InternalResourceViewResolver();
-		view.setPrefix("/WEB-INF/classes/views/");
-		view.setSuffix(".jsp");
-		view.setViewClass(JstlView.class);
-		return view;
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		registry.jsp("/WEB-INF/classes/views/", ".jsp");
 	}
 	
 	/**
@@ -89,9 +91,7 @@ public class MvcConfigure extends WebMvcConfigurerAdapter implements Transaction
 	}
 	
 	/**
-	 * @return
-	 * @Author:wuli
-	 * @Description:上传文件大小限制
+	 * 文件上传配置
 	 */
 	@Bean
 	public MultipartResolver multipartResolver() {
@@ -103,11 +103,7 @@ public class MvcConfigure extends WebMvcConfigurerAdapter implements Transaction
 	}
 	
 	/**
-	 * @return
-	 * @throws IOException
-	 * @throws PropertyVetoException
-	 * @Author:wuli
-	 * @Description:定义postgresql数据源
+	 * 定义postgresql数据源
 	 */
 	@Bean(destroyMethod = "close")
 	public ComboPooledDataSource dataSource() throws IOException, PropertyVetoException {
@@ -121,11 +117,7 @@ public class MvcConfigure extends WebMvcConfigurerAdapter implements Transaction
 	}
 	
 	/**
-	 * @return
-	 * @throws IOException
-	 * @throws PropertyVetoException
-	 * @Author:wuli
-	 * @Description:定义hibernate的sessionFactory
+	 * 定义hibernate的sessionFactory
 	 */
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() throws IOException, PropertyVetoException {
@@ -133,21 +125,20 @@ public class MvcConfigure extends WebMvcConfigurerAdapter implements Transaction
 //		ImplicitNamingStrategyJpaCompliantImpl：默认的命名策略
 //		factoryBean.setImplicitNamingStrategy(ImplicitNamingStrategyComponentPathImpl.INSTANCE);
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan("com.wl.model.po");
+		factoryBean.setPackagesToScan(PACKAGES_TO_SCAN);
 		Properties hibernateProperties = new Properties();
 		for (Object key : propService.getProperties().keySet()) {
-			hibernateProperties.put(key, propService.getProperty(key.toString()));
+			String keyString = key.toString();
+			if (keyString.contains("hibernate")) {
+				hibernateProperties.put(keyString, propService.getProperty(keyString));
+			}
 		}
 		factoryBean.setHibernateProperties(hibernateProperties);
 		return factoryBean;
 	}
 	
 	/**
-	 * @return
-	 * @throws IOException
-	 * @throws PropertyVetoException
-	 * @Author:wuli
-	 * @Description:定义hibernate事务管理
+	 * 定义hibernate事务管理
 	 */
 	@Bean
 	public HibernateTransactionManager transactionManager() throws IOException, PropertyVetoException {

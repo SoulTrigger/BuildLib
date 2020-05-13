@@ -11,11 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import com.wl.model.dto.MetadataElement;
-import com.wl.model.dto.MetadataSchema;
 
 /**
- * 元数据字段定义
+ * 元数据自定义字段
  * 
  * @author wuli
  * @date 2019年12月2日上午9:45:54
@@ -23,9 +24,8 @@ import com.wl.model.dto.MetadataSchema;
 @Entity
 @Table(name = "metadatafield")
 public class MetadataField extends BaseGenerator {
-
-	@Enumerated(value = EnumType.STRING)
-	private MetadataSchema schema;
+	//字段所属分类
+	private String schema;
 	@Enumerated(value = EnumType.STRING)
 	private MetadataElement element;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "field", orphanRemoval = true, fetch = FetchType.LAZY)
@@ -34,14 +34,8 @@ public class MetadataField extends BaseGenerator {
 	private String shortColumnQualifier;
 	private String noteQualifier;
 	private String defaultQualifier;
-
-	public MetadataSchema getSchema() {
-		return schema;
-	}
-
-	public void setSchema(MetadataSchema schema) {
-		this.schema = schema;
-	}
+	@ColumnDefault("true")
+	private Boolean isShow;
 
 	public MetadataElement getElement() {
 		return element;
@@ -89,5 +83,21 @@ public class MetadataField extends BaseGenerator {
 
 	public void setShortColumnQualifier(String shortColumnQualifier) {
 		this.shortColumnQualifier = shortColumnQualifier;
+	}
+
+	public Boolean getIsShow() {
+		return isShow;
+	}
+
+	public void setIsShow(Boolean isShow) {
+		this.isShow = isShow;
+	}
+
+	public String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(String schema) {
+		this.schema = schema;
 	}
 }

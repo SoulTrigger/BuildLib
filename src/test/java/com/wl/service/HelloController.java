@@ -1,32 +1,40 @@
-package com.wl.controller;
+package com.wl.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wl.model.po.Hello;
+import com.wl.model.po.User;
 
 @Controller
 public class HelloController {
 	
+	@Autowired
+    private HttpServletRequest request; //自动注入request
 	
+	@RequestMapping("table")
+	public String table() {
+		return "content/list";
+	}
 	
-	@RequestMapping("index")
-	public String hello() {
+	@RequestMapping("v1/{name}")
+	public String hello(@PathVariable("name")String name) {
+		request.setAttribute("name", name);
 		return "index";
 	}
 	
@@ -57,6 +65,12 @@ public class HelloController {
 	public String upload(MultipartFile file) throws IOException {
 		File uploadFile = new File("d:/upload/"+file.getOriginalFilename());
 		FileUtils.writeByteArrayToFile(uploadFile, file.getBytes());
+		return "ok";
+	}
+	
+	
+	@RequestMapping(value = "uploada",method = RequestMethod.POST)
+	public String uploada(User user) throws IOException {
 		return "ok";
 	}
 	

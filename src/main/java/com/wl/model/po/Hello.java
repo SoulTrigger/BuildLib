@@ -29,6 +29,9 @@ public class Hello {
 	private String[] names;
 	@Column(columnDefinition = "json" )
 	private String[] jsonString;
+	private String test;
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -52,6 +55,12 @@ public class Hello {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getTest() {
+		return test;
+	}
+	public void setTest(String test) {
+		this.test = test;
 	}
 	
 }

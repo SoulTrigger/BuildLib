@@ -1,4 +1,4 @@
-package com.wl.config.aware;
+package com.wl.service;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.wl.model.dto.ProgramException;
 
 /**
- * 加载程序之外的配置文件数据
+ * 加载程序之外的配置文件数据(spring感知)
  * @author wuli
  * @date 2019年10月21日上午9:38:41
  */

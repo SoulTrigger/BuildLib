@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
 		</encoder>
 	</appender>
 
-	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+            <level>DEBUG</level>
+        </filter>
+		<!-- <filter class="ch.qos.logback.classic.filter.LevelFilter">
+			过滤 DEBUG
+			<level>DEBUG</level>
+			匹配到就禁止
+			<onMatch>ACCEPT</onMatch>
+			没有匹配到就允许
+			<onMismatch>DENY</onMismatch>
+		</filter> -->
 		<file>D:/log/LogbackLogs</file>
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n</Pattern>
 		</encoder>
 
-		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 			<FileNamePattern>D:/log/LogbackLogs.%i.zip</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>30</MaxIndex>
 		</rollingPolicy>
 
-		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
 			<MaxFileSize>2MB</MaxFileSize>
 		</triggeringPolicy>
 	</appender>
@@ -26,6 +44,9 @@
 	<logger name="org.springframework.web" level="DEBUG" />
 	<logger name="org.hibernate.type" level="ALL" />
 	<logger name="org.hibernate" level="DEBUG" />
+	<logger name="com.wl" level="DEBUG">
+		<appender-ref ref="FILE" />
+	</logger>
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

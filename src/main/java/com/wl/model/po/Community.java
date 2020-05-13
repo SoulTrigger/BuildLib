@@ -11,6 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * prarent level
  * 
@@ -22,6 +26,7 @@ import javax.persistence.Table;
 public class Community extends BaseGenerator {
 	@Column(name = "community_name")
 	private String name;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Community parent;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", fetch = FetchType.EAGER)

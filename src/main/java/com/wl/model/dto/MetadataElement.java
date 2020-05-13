@@ -2,7 +2,7 @@ package com.wl.model.dto;
 
 
 /**
- * 元素数据html元素类型
+ * html元素类型
  * @author wuli
  * @date 2019年10月24日下午3:58:45
  */

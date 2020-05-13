@@ -2,6 +2,12 @@ package com.wl.model.vo;
 
 import java.util.List;
 
+/**
+ * 分页视图数据
+ * @author wuli
+ * @date 2019年12月9日下午6:22:00
+ * @param <T>
+ */
 public class PageResults<T> {
 	// 下一页
 	private int pageNo;

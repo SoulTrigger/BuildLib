@@ -1,4 +1,4 @@
-package com.wl.config.interceptor;
+package com.wl.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

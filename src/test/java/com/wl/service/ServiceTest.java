@@ -51,12 +51,7 @@ public class ServiceTest {
 	MockHttpSession session;
 	@Autowired
 	MockHttpServletRequest request;
-	@Autowired
-	CommunityService dao;
-	@Autowired
-	UserService userService;
-	@Autowired
-	PermissionService permissionService;
+	
 	@Autowired
 	BaseService<Hello, String> helloService;
 	@Before
@@ -94,13 +89,13 @@ public class ServiceTest {
 		collection.setName("bottom");
 		list.add(collection);
 		community.setCollections(list);
-		dao.save(community);
+//		dao.save(community);
 	}
 	
 	@Test
 	public void levelSelectTest() {
-		PageResults<Community> pager = dao.findPageByFetchedHql("from Community", "select count(*) from Community", 1, 2);
-		System.out.println(pager.getPageSize());
+//		PageResults<Community> pager = dao.findPageByFetchedHql("from Community", "select count(*) from Community", 1, 2);
+//		System.out.println(pager.getPageSize());
 	}
 	
 	@Test
@@ -112,7 +107,7 @@ public class ServiceTest {
 		Set<User> users = new HashSet<>();
 		users.add(user);
 		permission.setUsers(users);
-		permissionService.save(permission);
+//		permissionService.save(permission);
 	}
 	@Test
 	public void userTest() {
@@ -124,7 +119,7 @@ public class ServiceTest {
 		obj.setName("权限1");
 		permission.add(obj);
 		user.setRoles(permission);
-		userService.save(user);
+//		userService.save(user);
 	}
 	
 }
