@@ -1,4 +1,4 @@
-package com.wl.config.interceptor;
+package com.wl.interceptor;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,29 +10,27 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 
-import com.wl.base.BaseService;
 import com.wl.model.po.Role;
 
 @Component
-public class AppFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
+public class AppFilterInvocationSecurityMetadataSource
+		implements FilterInvocationSecurityMetadataSource {
 
-	@Autowired
-	private BaseService<Role, String> roleService;
+//	@Autowired
+//	private BaseService<Role, String> roleService;
 	private Map<String, Collection<ConfigAttribute>> map = null;
-	
+
 	/**
 	 * 加载权限资源
+	 * 
 	 * @Author:wuli
 	 * @Description:
 	 */
 	public void loadResourceDefine() {
-		map = new HashMap<>(16);
-		List<Role> roles = roleService.getListByHQL("form Role");
-		for (Role role : roles) {
-			
-		}
+//		map = new HashMap<>(16);
+//		List<Role> roles = roleService.getListByHQL("form Role");
 	}
-	
+
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object)
 			throws IllegalArgumentException {

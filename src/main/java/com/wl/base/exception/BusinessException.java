@@ -1,4 +1,4 @@
-package com.wl.exception;
+package com.wl.base.exception;
 
 /**
  * 业务异常

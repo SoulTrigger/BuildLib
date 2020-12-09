@@ -26,8 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.wl.base.BaseDao;
-import com.wl.base.BaseService;
-import com.wl.config.MvcConfigure;
+import com.wl.base.config.MvcConfigure;
 import com.wl.model.po.Collection;
 import com.wl.model.po.Community;
 import com.wl.model.po.Hello;
@@ -52,8 +51,8 @@ public class ServiceTest {
 	@Autowired
 	MockHttpServletRequest request;
 	
-	@Autowired
-	BaseService<Hello, String> helloService;
+//	@Autowired
+//	BaseService<Hello, String> helloService;
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
@@ -66,8 +65,8 @@ public class ServiceTest {
 	}
 	@Test
 	public void JSONTest() {
-		List<Hello> hello = helloService.getListByHQL("from Hello");
-		System.out.println(hello.size());
+//		List<Hello> hello = helloService.getListByHQL("from Hello");
+//		System.out.println(hello.size());
 	}
 	/**
 	 * @Author:wuli

@@ -7,9 +7,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wl.base.BaseService;
 import com.wl.model.po.MetadataField;
 import com.wl.model.vo.JsonResults;
+import com.wl.model.vo.PageResults;
+import com.wl.service.FieldService;
 
 /**
  * @author wuli
@@ -20,11 +21,18 @@ import com.wl.model.vo.JsonResults;
 public class FieldController {
 
 	@Autowired
-	BaseService<MetadataField, String> fieldService;
+	FieldService fieldService;
 
 	@RequestMapping("toList")
 	public String toList() {
 		return "field/list";
+	}
+
+	@ResponseBody
+	@RequestMapping("list")
+	public PageResults<MetadataField> list(int pageSize, int pageNumber) {
+		PageResults<MetadataField> pager = fieldService.list(pageSize, pageNumber);
+		return pager;
 	}
 
 	@RequestMapping("toEdit")

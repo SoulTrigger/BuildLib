@@ -1,4 +1,4 @@
-package com.wl.config;
+package com.wl.base.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

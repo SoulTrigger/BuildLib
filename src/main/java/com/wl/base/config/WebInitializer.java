@@ -1,4 +1,4 @@
-package com.wl.config;
+package com.wl.base.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration.Dynamic;

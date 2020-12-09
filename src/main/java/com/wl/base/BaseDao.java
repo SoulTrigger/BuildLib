@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +24,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.wl.model.vo.PageResults;
 
@@ -33,16 +34,19 @@ public class BaseDao<T, ID extends Serializable> implements IBaseDao<T, ID> {
 	private SessionFactory sessionFactory;
 	protected Class<T> entityClass;
 
-	public BaseDao() {
-
+	
+	protected void setEntityClass(Class<T> entityClass) {
+		this.entityClass=entityClass;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	protected Class getEntityClass() {
 		if (entityClass == null) {
+//			entityClass = (Class<T>)GenericsUtils.getSuperClassGenricType(getClass());
 			entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-//			ParameterizedType type = (ParameterizedType)getClass().getGenericInterfaces()[0];
+//			ParameterizedType type = (ParameterizedType) getClass().getGenericInterfaces()[0];
 //			entityClass = (Class<T>) type.getActualTypeArguments()[0].getClass();
+			
 		}
 		return entityClass;
 	}

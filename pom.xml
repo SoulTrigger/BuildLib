@@ -117,6 +117,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
+		<!-- 工具包 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
 
 		<!-- slf4j和log4j日志 -->
 		<dependency>
@@ -155,6 +162,20 @@
 		    <groupId>cn.hutool</groupId>
 		    <artifactId>hutool-all</artifactId>
 		    <version>5.0.6</version>
+		</dependency>
+
+		<!-- 网页爬取-http请求 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.12</version>
+		</dependency>
+		<!-- 网页爬取-jsoup -->
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.12.1</version>
 		</dependency>
 
 

@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.wl.base.BaseGenerator;
+
 @Table(name = "role")
 @Entity
 public class Role extends BaseGenerator {

@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.wl.base.BaseGenerator;
+
 /**
  * 元数据字段值定义
  * 

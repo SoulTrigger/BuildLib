@@ -9,10 +9,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wl.base.BaseGenerator;
 import com.wl.model.dto.MetadataElement;
 
 /**
@@ -22,82 +23,67 @@ import com.wl.model.dto.MetadataElement;
  * @date 2019年12月2日上午9:45:54
  */
 @Entity
-@Table(name = "metadatafield")
 public class MetadataField extends BaseGenerator {
 	//字段所属分类
-	private String schema;
+	private String columnSchema;
+	//字段呈现类型
 	@Enumerated(value = EnumType.STRING)
-	private MetadataElement element;
+	private MetadataElement columnElement;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "field", orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<MetadataValue> metadataValues = new HashSet<>();
-	private String columnQualifier;
-	private String shortColumnQualifier;
-	private String noteQualifier;
-	private String defaultQualifier;
+	private String columnName;
+	private String shortColumnName;
+	private String label;
+	private String defaultValue;
 	@ColumnDefault("true")
 	private Boolean isShow;
-
-	public MetadataElement getElement() {
-		return element;
+	public String getColumnSchema() {
+		return columnSchema;
 	}
-
-	public void setElement(MetadataElement element) {
-		this.element = element;
+	public void setColumnSchema(String columnSchema) {
+		this.columnSchema = columnSchema;
 	}
-
+	public MetadataElement getColumnElement() {
+		return columnElement;
+	}
+	public void setColumnElement(MetadataElement columnElement) {
+		this.columnElement = columnElement;
+	}
 	public Set<MetadataValue> getMetadataValues() {
 		return metadataValues;
 	}
-
 	public void setMetadataValues(Set<MetadataValue> metadataValues) {
 		this.metadataValues = metadataValues;
 	}
-
-	public String getColumnQualifier() {
-		return columnQualifier;
+	public String getColumnName() {
+		return columnName;
 	}
-
-	public void setColumnQualifier(String columnQualifier) {
-		this.columnQualifier = columnQualifier;
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
 	}
-
-	public String getNoteQualifier() {
-		return noteQualifier;
+	public String getShortColumnName() {
+		return shortColumnName;
 	}
-
-	public void setNoteQualifier(String noteQualifier) {
-		this.noteQualifier = noteQualifier;
+	public void setShortColumnName(String shortColumnName) {
+		this.shortColumnName = shortColumnName;
 	}
-
-	public String getDefaultQualifier() {
-		return defaultQualifier;
+	public String getLabel() {
+		return label;
 	}
-
-	public void setDefaultQualifier(String defaultQualifier) {
-		this.defaultQualifier = defaultQualifier;
+	public void setLabel(String label) {
+		this.label = label;
 	}
-
-	public String getShortColumnQualifier() {
-		return shortColumnQualifier;
+	public String getDefaultValue() {
+		return defaultValue;
 	}
-
-	public void setShortColumnQualifier(String shortColumnQualifier) {
-		this.shortColumnQualifier = shortColumnQualifier;
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
 	}
-
 	public Boolean getIsShow() {
 		return isShow;
 	}
-
 	public void setIsShow(Boolean isShow) {
 		this.isShow = isShow;
-	}
-
-	public String getSchema() {
-		return schema;
-	}
-
-	public void setSchema(String schema) {
-		this.schema = schema;
 	}
 }

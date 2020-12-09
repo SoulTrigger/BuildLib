@@ -12,13 +12,20 @@ public enum MetadataElement {
 	INPUT_RADIO(2,"单选框"),
 	INPUT_CHECKBOX(3,"复选框"),
 	TEXTAREA(4,"富文本框"),
-	SELECT(5,"下拉框");
+	SELECT(5,"下拉框"),
+	INPUT_FILE(6,"文本域");
 	
 	private int code;
-	private String alis;
-	MetadataElement(int code,String alis) {
+	private String alias;
+	MetadataElement(int code,String alias) {
 		this.code = code;
-		this.alis = alis;
+		this.alias = alias;
+	}
+	public int getCode() {
+		return code;
+	}
+	public String getAlias() {
+		return alias;
 	}
 	
 }

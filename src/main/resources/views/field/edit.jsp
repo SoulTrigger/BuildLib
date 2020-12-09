@@ -1,176 +1,143 @@
+<%@page import="com.wl.model.dto.MetadataElement"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="admin-content-body">
-	<div class="am-cf am-padding am-padding-bottom-0">
-		<div class="am-fl am-cf">
-			<strong class="am-text-primary am-text-lg">表单</strong> / <small>form</small>
-		</div>
-	</div>
-
-	<hr>
-	<form class="am-form">
-	<fieldset>
-		<div class="am-form-group">
-	    	<label for="doc-ipt-email-1">字段分类名称 </label>
-			<input type="text" name="schema" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">
-		</div>
-		</fieldset>
-    </form>
-	
-	<div class="am-tabs am-margin" data-am-tabs>
-		<ul class="am-tabs-nav am-nav am-nav-tabs">
-			<li class="am-active"><a href="#tab1">基本信息</a></li>
-			<li><a href="#tab2">详细描述</a></li>
-			<li><a href="#tab3">SEO 选项</a></li>
-		</ul>
-
-		<div class="am-tabs-bd">
-			<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-				<div class="am-g am-margin-top">
-					<div class="am-u-sm-4 am-u-md-2 am-text-right">所属类别</div>
-					<div class="am-u-sm-8 am-u-md-10">
-						<select data-am-selected="{btnSize: 'sm'}">
-							<option value="option1">选项一...</option>
-							<option value="option2">选项二.....</option>
-							<option value="option3">选项三........</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="am-g am-margin-top">
-					<div class="am-u-sm-4 am-u-md-2 am-text-right">显示状态</div>
-					<div class="am-u-sm-8 am-u-md-10">
-						<div class="am-btn-group" data-am-button>
-							<label class="am-btn am-btn-default am-btn-xs"> <input
-								type="radio" name="options" id="option1"> 正常
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="radio" name="options" id="option2"> 待审核
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="radio" name="options" id="option3"> 不显示
-							</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="am-g am-margin-top">
-					<div class="am-u-sm-4 am-u-md-2 am-text-right">推荐类型</div>
-					<div class="am-u-sm-8 am-u-md-10">
-						<div class="am-btn-group" data-am-button>
-							<label class="am-btn am-btn-default am-btn-xs"> <input
-								type="checkbox"> 允许评论
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="checkbox"> 置顶
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="checkbox"> 推荐
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="checkbox"> 热门
-							</label> <label class="am-btn am-btn-default am-btn-xs"> <input
-								type="checkbox"> 轮播图
-							</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="am-g am-margin-top">
-					<div class="am-u-sm-4 am-u-md-2 am-text-right">发布日期</div>
-					<div class="am-u-sm-8 am-u-md-10">
-						<form action="" class="am-form am-form-inline">
-							<div class="am-form-group am-form-icon">
-								<i class="am-icon-calendar"></i> <input type="date"
-									class="am-form-field am-input-sm" placeholder="日期">
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="am-g am-margin-top">
-					<div class="am-u-sm-4 am-u-md-2 am-text-right">发布时间</div>
-					<div class="am-u-sm-8 am-u-md-10">
-						<form action="" class="am-form am-form-inline">
-							<div class="am-form-group am-form-icon">
-								<i class="am-icon-calendar"></i> <input type="datetime-local"
-									class="am-form-field am-input-sm" placeholder="时间">
-							</div>
-						</form>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="am-tab-panel am-fade" id="tab2">
-				<form class="am-form">
-					<div class="am-g am-margin-top">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">文章标题</div>
-						<div class="am-u-sm-8 am-u-md-4">
-							<input type="text" class="am-input-sm">
-						</div>
-						<div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
-					</div>
-
-					<div class="am-g am-margin-top">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">文章作者</div>
-						<div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-							<input type="text" class="am-input-sm">
-						</div>
-					</div>
-
-					<div class="am-g am-margin-top">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">信息来源</div>
-						<div class="am-u-sm-8 am-u-md-4">
-							<input type="text" class="am-input-sm">
-						</div>
-						<div class="am-hide-sm-only am-u-md-6">选填</div>
-					</div>
-
-					<div class="am-g am-margin-top">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">内容摘要</div>
-						<div class="am-u-sm-8 am-u-md-4">
-							<input type="text" class="am-input-sm">
-						</div>
-						<div class="am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
-					</div>
-
-					<div class="am-g am-margin-top-sm">
-						<div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-							内容描述</div>
-						<div class="am-u-sm-12 am-u-md-10">
-							<textarea rows="10" placeholder="请使用富文本编辑插件"></textarea>
-						</div>
-					</div>
-
-				</form>
-			</div>
-
-			<div class="am-tab-panel am-fade" id="tab3">
-				<form class="am-form">
-					<div class="am-g am-margin-top-sm">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 标题</div>
-						<div class="am-u-sm-8 am-u-md-4 am-u-end">
-							<input type="text" class="am-input-sm">
-						</div>
-					</div>
-
-					<div class="am-g am-margin-top-sm">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 关键字</div>
-						<div class="am-u-sm-8 am-u-md-4 am-u-end">
-							<input type="text" class="am-input-sm">
-						</div>
-					</div>
-
-					<div class="am-g am-margin-top-sm">
-						<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 描述</div>
-						<div class="am-u-sm-8 am-u-md-4 am-u-end">
-							<textarea rows="4"></textarea>
-						</div>
-					</div>
-				</form>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="am-margin">
-		<button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
-		<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
-	</div>
-</div>
+<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>所有表单元素 <small>包括自定义样式的复选和单选按钮</small></h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" id="form" class="form-horizontal">
+                        	<div class="form-group">
+                                <label class="col-sm-2 control-label">字段呈现类型</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="columnElement">
+									<c:forEach items="<%=MetadataElement.values() %>" var="e" >
+                                        <option value="${e}" selected="${data.columnElement!=null&&data.columnElement==e?'selected':''} ">${e.alias }</option>
+                                    </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">字段分类</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="columnSchema" id="columnSchema" required>
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">选择 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">字段中文名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="label" required value="${data.label }">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">字段英文名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="columnName" required value="${data.columnName }">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">字段英文名简写</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="shortColumnName" required value=${data.shortColumnName }>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">字段默认值</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="defaultValue" value="${data.defaultValue }">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否启用</label>
+                                <div class="col-sm-10">
+                                	 <label class="radio-inline i-checks">
+                                        <input type="radio" checked="${data.isShow?'checked':'' }" value="true" name="isShow">是</label>
+                                    <label class="radio-inline i-checks">
+                                        <input type="radio" checked="${data.isShow?'':'checked' }"value="false" name="isShow">否</label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">保存内容</button>
+                                    <button class="btn btn-white" type="button" onclick="javascript:location.href='page/field/toList'">返回</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script src="assets/js/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script>
+$(function(){
+	var testdataBsSuggest = $("#columnSchema").bsSuggest({
+	    indexId: 0, //data.value 的第几个数据，作为input输入框的内容
+	    indexKey: 1, //data.value 的第几个数据，作为input输入框的内容
+	    data: {
+	        'value': [
+	            {
+	                'id': '0',
+	                'word': 'lzw',
+	                'description': 'http://lzw.me'	
+	            },
+	            {
+	                'id': '1',
+	                'word': 'lzwme',
+	                'description': 'http://w.lzw.me'
+	            },
+	            {
+	                'id': '2',
+	                'word': 'meizu',
+	                'description': 'http://www.meizu.com'
+	            },
+	            {
+	                'id': '3',
+	                'word': 'flyme',
+	                'description': 'http://flyme.meizu.com'
+	            }
+			],
+	        'defaults': 'http://lzw.me'
+	    }
+	});	
+	$("#form").validate({
+		rules:{
+			columnName:{
+				mustWord:true
+			},
+			shortColumnName:{
+				mustUpperCaseWord:true
+			},
+			label:{
+				mustChinese:true
+			}
+		},
+		submitHandler: function(form) 
+	   {
+			$('#form').ajaxSubmit({
+				url:'field/save',
+				success:function(data){
+					if(data.success){
+						location.href='page/field/toList';
+					}else{
+						swal({
+		                    title: "操作失败",
+		                    text: '错误详情：'+data.msg
+		                });
+					}
+				}
+			});     
+	   }  
+	});
+})
+</script>
